@@ -17,21 +17,21 @@ int main(int argc, char *argv[]) { //argv[1]부터 파일 이름 출력
     uint32_t sum = 0;
     for(int i = 1; i < argc; i++) {
         // 1. 파일 열기
-	if((file = fopen(argv[i], "rb")) == NULL) { // 예외처리1
-		printf("파일 오픈에 문제가 발생했습니다");
-		exit(1);
-	}
+        if((file = fopen(argv[i], "rb")) == NULL) { // 예외처리1
+            printf("파일 오픈에 문제가 발생했습니다");
+            exit(1);
+        }
 
         // 2. 숫자 읽기
         unsigned char buffer[4];
         size_t file_read = fread(buffer, 1, 4, file);
-	
-	// 예외처리2
-	if(file_read > 4) {
-		printf("파일을 읽는 데에 문제가 발생했습니다.");
-		fclose(file);
-		exit(1);
-	}
+        
+        // 예외처리2
+        if(file_read > 4) {
+            printf("파일을 읽는 데에 문제가 발생했습니다.");
+            fclose(file);
+            exit(1);
+        }
 
         // 3. 리틀 엔디안 -> 빅 엔디안 
         uint32_t little_endian_value = buffer[0] | (buffer[1] << 8) | (buffer[2] << 16) | (buffer[3] << 24);
