@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) { //argv[1]부터 파일 이름 출력
         size_t file_read = fread(buffer, 1, 4, file);
         
         // 예외처리2
-        if(file_read > 4) {
+        if(file_read < 4) {
             printf("파일을 읽는 데에 문제가 발생했습니다.");
             fclose(file);
             exit(1);
